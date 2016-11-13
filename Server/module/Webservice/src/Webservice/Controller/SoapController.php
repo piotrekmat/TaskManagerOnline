@@ -6,7 +6,7 @@ use \Application\Controller\AbstractController;
 use Zend\Mvc\Application;
 use \Zend\Soap\AutoDiscover;
 use \Zend\Soap\Server;
-use \Zend\Soap\Wsdl\ComplexTypeStrategy\ArrayOfTypeSequence as Strategy;
+use \Zend\Soap\Wsdl\ComplexTypeStrategy\AnyType as Strategy;
 
 ini_set("soap.wsdl_cache_enabled", "0");
 
@@ -19,10 +19,6 @@ class SoapController extends AbstractController
 
     public function indexAction()
     {
-
-
-        $soap = new Server();
-        $request = $this->getRequest();
         $response = $this->getResponse();
 
         $controller = $this->params('soapcontroller');
@@ -33,45 +29,24 @@ class SoapController extends AbstractController
             $uri = $this->getUri(true);
             $wsdlGenerator = new AutoDiscover(new Strategy());
             $wsdlGenerator->setServiceName($classWsdl);
-            $wsdlGenerator->setClass($classWsdl);
-            $wsdlGenerator->setWsdlClass($classWsdl);
             $wsdlGenerator->setUri($uri);
+            $wsdlGenerator->setClass($classWsdl);
             $wsdl = $wsdlGenerator->generate();
-            var_dump($wsdl);
-            die;
             $response->getHeaders()->addHeaderLine('Content-Type', 'application/wsdl+xml');
             $response->setContent($wsdl->toXml());
         } else {
+            $soap = new Server();
             $soap->setReturnResponse(true);
             $uri = $this->getUri(true);
-            $wsdl = new $classWsdl($uri);
             $soap->setUri($uri);
-            $soap->setClass($wsdl);
-            $soapResponse = $soap->handle($request);
+            $soap->setClass($classWsdl);
+            $soapResponse = $soap->handle();
             if ($soapResponse instanceof SoapFault) {
                 $soapResponse = (string)$soapResponse;
             }
-
             $response->getHeaders()->addHeaderLine('Content-Type', 'application/xml');
             $response->setContent($soapResponse);
         }
-
-
-        switch ($request->getMethod()) {
-            case 'GET':
-
-                break;
-
-            case 'POST':
-
-                break;
-
-            default:
-                $response->setStatusCode(405);
-                $response->getHeaders()->addHeaderLine('Allow', 'GET,POST');
-                break;
-        }
-//        var_dump($response);
         return $response;
     }
 

@@ -4,7 +4,7 @@
  * Adapter bazy danych: use ::getInstance();
  * @project: System partnerski SIFT
  * @author: Marcin Związek
- * 
+ *
  */
 
 namespace Application\Model;
@@ -17,7 +17,7 @@ class Adapter extends \Zend\Db\Adapter\Adapter
 
     /**
      *
-     * @var Adapter 
+     * @var Adapter
      */
     private static $_oInstance;
 
@@ -30,8 +30,6 @@ class Adapter extends \Zend\Db\Adapter\Adapter
 
             $sm = ServiceLocatorFactory::getInstance();
             self::$_oInstance = $sm->get('Zend\Db\Adapter\Adapter');
-            // $config = (new \Application\Module())->getConfig()['db'];
-            // self::$_oInstance = new self($config);
             self::$_oInstance->query("SET NAMES 'utf8' COLLATE 'utf8_unicode_ci'")->execute();
         }
         return self::$_oInstance;

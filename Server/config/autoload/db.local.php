@@ -9,15 +9,15 @@ return [
 //                    'host' => 'localhost',
 //                    'port' => '3306',
 //                    'user' => 'root',
-//                    'password' => 'rudolf1@3',
+//                    'password' => '',
 //                    'dbname' => 'sift',
 //                ]
 //            ]
 //        ]
 //    ],
-//    'db' => [
-//        'username' => '',
-//        'password' => '',
-//    ],
-      ];
+    'db' => [
+        'username' => 'root',
+        'password' => 'rudolf1@3',
+    ],
+];
 ?>

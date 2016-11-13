@@ -25,17 +25,17 @@ return [
             'Zend\Session\Validator\HttpUserAgent',
         ],
     ],
-    
+
     'db' => [
-        'hostname' => ' ',
-        'driver' => ' ',
-        'database' => ' ',
-        'charset' => ' ',
+        'hostname' => 'localhost',
+        'driver' => 'Mysqli',
+        'database' => 'taskmanager',
+        'charset' => 'UTF-8',
     ],
 
     'service_manager' => [
         'factories' => [
-//            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
         ],
     ],
 ];

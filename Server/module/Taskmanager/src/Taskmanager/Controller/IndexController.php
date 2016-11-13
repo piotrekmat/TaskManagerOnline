@@ -11,23 +11,23 @@
 namespace Taskmanager\Controller;
 
 use \Application\Controller\AbstractController;
+use \Taskmanager\Webservice\Computer;
 
 
-class Index extends AbstractController
+class IndexController extends AbstractController
 {
 
     public function indexAction()
     {
-        try {
+        $computer = new Computer();
+        $data = [
+            'asdasda',
+            'asdasdasd',
+            'asdasdasdasd',
+            'asdasdasdasd'
+        ];
+        $computer->addInformation("asdasdasd", $data);
 
-            return [
-                "aaaa",
-                "bbb",
-                "cccc"
-            ];
-        } catch (Exception $ex) {
-            throw $ex;
-        }
 
         return $this->view();
     }

@@ -1,0 +1,1 @@
+{include file='view/layout/form/static.tpl' form=$form}

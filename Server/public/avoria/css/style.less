@@ -1,0 +1,84 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 15, 2015, 4:32:52 PM
+    Author     : marcin
+*/
+
+@import "variable.less";
+
+@heightMenu: 80px;
+
+body {
+    font-size: 16px;
+    color: @color;
+}
+/*
+.container {
+    min-width: 345px;
+    width: 60%;
+    max-width: @width;
+}
+*/
+
+.head .logo {
+    height: @heightMenu;
+    float: left;
+    vertical-align: middle;
+}
+.head .logo img {
+    height: 60px;
+    margin: 10px 0;
+}
+
+.head .contact {
+    top: 30px;
+    float: right;
+    vertical-align: middle;
+}
+
+.head .contact span {
+    font-size: 18px;
+    font-weight: bold;
+    float: right;
+}
+
+.menu {
+    clear: both;
+    border-radius: 0px; 
+    border: none;
+    margin: 0;
+    background: @background;
+}
+
+.menu .navbar {
+    margin: 0;
+    background: none;
+    border: none;
+}
+
+.menu ul {
+    position: relative;
+    top: 0px;
+    left: 0%;
+    list-style: none;
+    position: relative;
+    float: left;
+}
+
+.navbar-nav > li > a {
+    font-size: 16px;
+    font-weight: bolder;
+    color: white;
+}
+
+.navbar-nav > li.active,
+.navbar-nav > li > a:hover {
+    background: none  !important;
+    color: @color !important;
+}
+
+

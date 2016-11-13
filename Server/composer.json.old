@@ -1,0 +1,39 @@
+#
+{
+    "name": "murganikolay/zf2-skeleton",
+    "description": "Zend Framework sekeleton application with doctrine and smarty as template engine",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Murga Nikolay",
+            "email": "nikolay.m@randrmusic.com"
+        }
+    ],
+    "require": {
+        "zendframework/zendframework": "dev-master",
+        "doctrine/doctrine-orm-module": "dev-master",
+        "doctrine/doctrine-module": "dev-master",
+        "zendframework/zend-developer-tools": "dev-master",
+        "zendcart/zendcart": "dev-master",
+        "murganikolay/smarty-module" : "dev-master"
+    }
+}
+# 04.10.2015
+{
+    "name": "murganikolay/zf2-skeleton",
+    "description": "Zend Framework sekeleton application with doctrine and smarty as template engine",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Marcin Zwiazek",
+            "email": "marcin@zwiazek.net"
+        }
+    ],
+    "require": {
+        "zendframework/zendframework": "dev-master",
+        "zendframework/zend-developer-tools": "dev-master",
+        "zendcart/zendcart": "dev-master",
+        "doctrine/orm": "*"
+    }
+}
+

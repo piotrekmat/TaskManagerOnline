@@ -1,0 +1,66 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2015-10-27, 10:10:50
+    Author     : marcin
+*/
+@import "variable.less";
+
+.opinie .carousel {
+    height: 200px;
+}
+
+
+.carousel div.image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: none;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    margin: 25px auto;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+}
+
+.carousel a span.glyphicon {
+    font-size: 25px;
+    color: #B7B9BD;
+}
+
+.carousel a:hover span.glyphicon {
+    color: @color;
+}
+
+p.opinia {
+    font-size: 20px;
+    line-height: 30px;
+    font-style: italic;
+    color: @color;
+}
+
+h3.autor { 
+    line-height: 20px;
+    font-size: 12px;
+    color: @color;
+}
+
+.control a {
+    position: absolute;
+    float: outside;
+    top: 50px;
+    z-index: 100;
+}
+
+.control a.left {
+    float: left;
+    left: -30px;
+}
+
+.control a.right {
+    float: right;
+    right: -30px;
+}

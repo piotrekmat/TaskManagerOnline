@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+    <channel>
+        <title>google-products.xml</title>
+        <link>http://www.lapado.de</link>
+        <description>Internethandel, deutscher Webshop, Elektronikartikel, beste Preise, Angebote, Onlinebestellung</description>
+        {% for product in products %}
+            <item>
+                <g:id>{{ product.id }}</g:id>
+                <title>{{ product.name }}</title>
+                <description>{{ product.html }}</description>
+                <g:google_product_category>{{ product.google_product_category }}</g:google_product_category>
+                <link>http://{{ service }}/{{ product.link }}</link>
+                <g:image_link>http://{{ service }}{{ product.image }}</g:image_link>
+                <g:condition>{%  if product.condition_id == 0 %}new{%  else  %}used{%  endif %}</g:condition>
+                <g:availability>{%  if (product.presale_allowed == 1 and product.presale_stock != NULL and product.presale_stock > 0) %}preorder{%  elseif product.stock > 0  %}in stock{%  else %}out of stock{%  endif %}</g:availability>
+                <g:price>{{ product.price }}</g:price>
+                <g:brand>{{ product.brand }}</g:brand>
+                <g:gtin>{{ product.gtin }}</g:gtin>
+                <g:product_type>{{ product.product_type }}</g:product_type>
+            </item>
+        {% endfor %}
+    </channel>
+</rss>

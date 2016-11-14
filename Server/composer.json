@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
 	"name": "murganikolay/zf2-skeleton",
 	"description": "Zend Framework sekeleton application with doctrine and smarty as template engine",
 	"minimum-stability": "stable",
@@ -13,22 +12,5 @@
 		"doctrine/orm": "*",
 		"murganikolay/smarty-module": "dev-master"
 	}
-=======
-  "name": "murganikolay/zf2-skeleton",
-  "description": "Zend Framework sekeleton application with doctrine and smarty as template engine",
-  "minimum-stability": "stable",
-  "authors": [
-    {
-      "name": "Marcin Zwiazek",
-      "email": "marcin@zwiazek.net"
-    }
-  ],
-  "require": {
-    "zendframework/zendframework": "2.5.1",
-    "zendframework/zend-developer-tools": "dev-master",
-    "doctrine/orm": "*",
-    "murganikolay/smarty-module": "dev-master"
-  }
->>>>>>> 58fa08d86f6bc62f8ca0c92c7cae756f51de4e1c
 }
 

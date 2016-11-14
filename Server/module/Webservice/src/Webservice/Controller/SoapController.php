@@ -6,7 +6,7 @@ use \Application\Controller\AbstractController;
 use Zend\Mvc\Application;
 use \Zend\Soap\AutoDiscover;
 use \Zend\Soap\Server;
-use \Zend\Soap\Wsdl\ComplexTypeStrategy\AnyType as Strategy;
+use \Zend\Soap\Wsdl\ComplexTypeStrategy\ArrayOfTypeSequence as Strategy;
 
 ini_set("soap.wsdl_cache_enabled", "0");
 
@@ -28,11 +28,13 @@ class SoapController extends AbstractController
         if (isset($_GET['wsdl'])) {
             $uri = $this->getUri(true);
             $wsdlGenerator = new AutoDiscover(new Strategy());
-            $wsdlGenerator->setServiceName($classWsdl);
+//            $wsdlGenerator->setServiceName($classWsdl);
+            $wsdlGenerator->setBindingStyle(['style' => 'document']);
+            $wsdlGenerator->setOperationBodyStyle(['use' => 'literal']);
             $wsdlGenerator->setUri($uri);
             $wsdlGenerator->setClass($classWsdl);
             $wsdl = $wsdlGenerator->generate();
-            $response->getHeaders()->addHeaderLine('Content-Type', 'application/wsdl+xml');
+            $response->getHeaders()->addHeaderLine('Content-Type', 'application/xml');
             $response->setContent($wsdl->toXml());
         } else {
             $soap = new Server();
@@ -54,8 +56,8 @@ class SoapController extends AbstractController
     {
         if (empty($this->uri)) {
             $this->uri = $this->getRequest()->getUri();
-            if ($wsdl) {
-                $this->uri = $this->uri . "?wsdl";
+            if (true === $wsdl) {
+                $this->uri = $this->uri . "";
             }
         }
         return $this->uri;

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit8c6cfc65bb9276a2bdad866c8acbf35f
+class ComposerStaticInite98cdda78cae1f566cde970dc26bb63e
 {
     public static $files = array (
         '34901568a1e26d13dd475cb2c85e0284' => __DIR__ . '/..' . '/zendframework/zend-form/autoload/formElementManagerPolyfill.php',
@@ -1031,10 +1031,10 @@ class ComposerStaticInit8c6cfc65bb9276a2bdad866c8acbf35f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit8c6cfc65bb9276a2bdad866c8acbf35f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit8c6cfc65bb9276a2bdad866c8acbf35f::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit8c6cfc65bb9276a2bdad866c8acbf35f::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit8c6cfc65bb9276a2bdad866c8acbf35f::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite98cdda78cae1f566cde970dc26bb63e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite98cdda78cae1f566cde970dc26bb63e::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInite98cdda78cae1f566cde970dc26bb63e::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInite98cdda78cae1f566cde970dc26bb63e::$classMap;
 
         }, null, ClassLoader::class);
     }

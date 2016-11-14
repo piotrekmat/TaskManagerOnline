@@ -36,23 +36,23 @@ class Computer
         return true;
     }
 
-//    /**
-//     * @param $idComputer
-//     * @param $data
-//     * @return array
-//     */
-//    public function getInformation($idComputer, $data)
-//    {
-//        return [];
-//    }
-//
-//    /**
-//     * @return array
-//     */
-//    public function getList()
-//    {
-//        return [];
-//    }
+    /**
+     * @param $idComputer
+     * @param $data
+     * @return array
+     */
+    public function getInformation($idComputer, $data)
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getList()
+    {
+        return [];
+    }
 
 
 }

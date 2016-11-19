@@ -16,10 +16,6 @@ use \Zend\Soap\Wsdl;
  * @package Taskmanager\Webservice
  */
 
-/**
- * TO BYŁEM JA
- */
-
 use \Taskmanager\Model;
 
 class Computer

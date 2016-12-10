@@ -21,6 +21,7 @@ use \Taskmanager\Model;
 
 class Computer
 {
+
     /**
      * Add information about single computer
      * @param string $idComputer
@@ -53,8 +54,8 @@ class Computer
     public function getInformation($idComputer, $data)
     {
         return [
-            "idComputer" => $idComputer,
-            "data" => $data
+            "zwrotka1" => $idComputer,
+            "zwrotka2" => $data
         ];
     }
 
@@ -64,7 +65,7 @@ class Computer
      */
     public function getList()
     {
-        return [];
+        return ["asdasdasd"];
     }
 
 

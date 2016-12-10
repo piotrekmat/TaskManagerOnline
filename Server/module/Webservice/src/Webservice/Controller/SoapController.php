@@ -45,8 +45,7 @@ class SoapController extends AbstractController
             $uri = $this->getRequest()->getUri();
             $soap = new Server((string)$uri . '?wsdl');
             $soap->setReturnResponse(true);
-            $cls = new $classWsdl();
-            $dlwcsl = new DocumentLiteralWrapper($cls);
+            $dlwcsl = new DocumentLiteralWrapper(new $classWsdl());
             $soap->setObject($dlwcsl);
             $soapResponse = $soap->handle();
             if ($soapResponse instanceof SoapFault) {

@@ -26,9 +26,10 @@ class SoapController extends AbstractController
         $classWsdl = sprintf("%s\\Webservice\\%s", ucfirst($controller), ucfirst($action));
 
         if (isset($_GET['wsdl'])) {
-            $uri = $this->getUri(true);
-            $wsdlGenerator = new AutoDiscover(new Strategy());
-//            $wsdlGenerator->setServiceName($classWsdl);
+            $strategy = new Strategy();
+            $uri = $this->getUri();
+            $wsdlGenerator = new AutoDiscover($strategy);
+            $wsdlGenerator->setServiceName($classWsdl);
             $wsdlGenerator->setBindingStyle(['style' => 'document']);
             $wsdlGenerator->setOperationBodyStyle(['use' => 'literal']);
             $wsdlGenerator->setUri($uri);
@@ -37,9 +38,12 @@ class SoapController extends AbstractController
             $response->getHeaders()->addHeaderLine('Content-Type', 'application/xml');
             $response->setContent($wsdl->toXml());
         } else {
+
             $soap = new Server();
             $soap->setReturnResponse(true);
             $uri = $this->getUri(true);
+            var_dump($uri);
+            die;
             $soap->setUri($uri);
             $soap->setClass($classWsdl);
             $soapResponse = $soap->handle();
@@ -57,7 +61,7 @@ class SoapController extends AbstractController
         if (empty($this->uri)) {
             $this->uri = $this->getRequest()->getUri();
             if (true === $wsdl) {
-                $this->uri = $this->uri . "";
+                $this->uri = $this->uri . "?wsdl";
             }
         }
         return $this->uri;

@@ -9,6 +9,7 @@
 
 namespace Taskmanager\Webservice;
 
+use chobie\Jira\Api\Exception;
 use \Zend\Soap\Wsdl;
 
 /**
@@ -21,32 +22,44 @@ use \Taskmanager\Model;
 class Computer
 {
     /**
+     * Add information about single computer
      * @param string $idComputer
-     * @param array $data
+     * @param string $data
      * @return bool
      */
     public function addInformation($idComputer, $data)
     {
-        $model = new Model\TaskmanagerTable();
-        $row = $model->row();
-        $row->id_computer = $idComputer;
-        $row->json = json_encode($data);
-        $row->save();
+        try {
+            $model = new Model\TaskmanagerTable();
+            $row = $model->row();
+            $row->id_computer = $idComputer;
+            $row->json = json_encode($data);
+            $row->save();
 
-        return true;
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+
+
     }
 
     /**
-     * @param $idComputer
-     * @param $data
+     * Get information about a single computer
+     * @param string $idComputer
+     * @param string $data
      * @return array
      */
     public function getInformation($idComputer, $data)
     {
-        return [];
+        return [
+            "idComputer" => $idComputer,
+            "data" => $data
+        ];
     }
 
     /**
+     * Get list of computers
      * @return array
      */
     public function getList()

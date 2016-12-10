@@ -53,6 +53,7 @@ class SoapController extends AbstractController
             }
             $response->getHeaders()->addHeaderLine('Content-Type', 'application/xml');
             $response->setContent($soapResponse);
+            // nowa zmiana sprawdzić hook
         }
         return $response;
     }

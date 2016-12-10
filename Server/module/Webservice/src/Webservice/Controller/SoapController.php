@@ -7,6 +7,7 @@ use Zend\Mvc\Application;
 use \Zend\Soap\AutoDiscover;
 use \Zend\Soap\Server;
 use \Zend\Soap\Wsdl\ComplexTypeStrategy\ArrayOfTypeSequence as Strategy;
+use \Zend\Soap\Server\DocumentLiteralWrapper;
 
 ini_set("soap.wsdl_cache_enabled", "0");
 
@@ -30,7 +31,10 @@ class SoapController extends AbstractController
             $uri = $this->getUri();
             $wsdlGenerator = new AutoDiscover($strategy);
             $wsdlGenerator->setServiceName($classWsdl);
-            $wsdlGenerator->setBindingStyle(['style' => 'document']);
+            $wsdlGenerator->setBindingStyle([
+                'style' => 'document',
+//                'transport' => 'http://schemas.xmlsoap.org/soap/http'
+            ]);
             $wsdlGenerator->setOperationBodyStyle(['use' => 'literal']);
             $wsdlGenerator->setUri($uri);
             $wsdlGenerator->setClass($classWsdl);
@@ -38,14 +42,12 @@ class SoapController extends AbstractController
             $response->getHeaders()->addHeaderLine('Content-Type', 'application/xml');
             $response->setContent($wsdl->toXml());
         } else {
-
-            $soap = new Server();
+            $uri = $this->getRequest()->getUri();
+            $soap = new Server((string)$uri . '?wsdl');
             $soap->setReturnResponse(true);
-            $uri = $this->getUri(true);
-            var_dump($uri);
-            die;
-            $soap->setUri($uri);
-            $soap->setClass($classWsdl);
+            $cls = new $classWsdl();
+            $dlwcsl = new DocumentLiteralWrapper($cls);
+            $soap->setObject($dlwcsl);
             $soapResponse = $soap->handle();
             if ($soapResponse instanceof SoapFault) {
                 $soapResponse = (string)$soapResponse;

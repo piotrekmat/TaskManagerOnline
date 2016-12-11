@@ -39,7 +39,7 @@ class SoapController extends AbstractController
             $wsdlGenerator->setUri($uri);
             $wsdlGenerator->setClass($classWsdl);
             $wsdl = $wsdlGenerator->generate();
-            $response->getHeaders()->addHeaderLine('Content-Type', 'application/xml');
+            $response->getHeaders()->addHeaderLine('Content-Type', 'text/xml');
             $response->setContent($wsdl->toXml());
         } else {
             $uri = $this->getRequest()->getUri();
@@ -51,7 +51,7 @@ class SoapController extends AbstractController
             if ($soapResponse instanceof SoapFault) {
                 $soapResponse = (string)$soapResponse;
             }
-            $response->getHeaders()->addHeaderLine('Content-Type', 'application/xml');
+            $response->getHeaders()->addHeaderLine('Content-Type', 'text/xml');
             $response->setContent($soapResponse);
         }
         return $response;

@@ -16,7 +16,7 @@ namespace WindowsApp
         private string id;
         private PerformanceCounter cpuCounter;
         private PerformanceCounter ramCounter;
-        private PerformanceCounter[] hddCounters;
+        private List<PerformanceCounter> hddCounters;
 
         private Timer timer;
 
@@ -69,14 +69,23 @@ namespace WindowsApp
         private void InitializeHddCounters()
         {
             string[] drives = Environment.GetLogicalDrives();
-            hddCounters = new PerformanceCounter[drives.Length];
+            hddCounters = new List<PerformanceCounter>();
             for (int i = 0; i < drives.Length; i++)
             {
-                hddCounters[i] = new PerformanceCounter();
-                hddCounters[i].CategoryName = "Dysk logiczny";
-                hddCounters[i].CounterName = "Wolne megabajty";
-                hddCounters[i].InstanceName = drives[i].Substring(0, 2);
-                hddCounters[i].NextValue();
+                PerformanceCounter counter = new PerformanceCounter();
+                counter.CategoryName = "Dysk logiczny";
+                counter.CounterName = "Wolne megabajty";
+                counter.InstanceName = drives[i].Substring(0, 2);
+                
+                try
+                {
+                    counter.NextValue();
+                    hddCounters.Add(counter);
+                }
+                catch
+                {
+
+                }
             }
         }
 
@@ -108,8 +117,8 @@ namespace WindowsApp
 
         public int[] GetHddsMB()
         {
-            int[] tab = new int[hddCounters.Length];
-            for(int i = 0; i < hddCounters.Length; i++)
+            int[] tab = new int[hddCounters.Count];
+            for(int i = 0; i < hddCounters.Count; i++)
             {
                 tab[i] = (int)Math.Round(hddCounters[i].NextValue(), 0);
             }
@@ -153,12 +162,11 @@ namespace WindowsApp
                     Procesy += proces + ";";
                 }
                 Procesy += "'";
-                //string commandString = string.Format("INSERT INTO [Dane] ([Komputer_Id],[Komputer_Nazwa],[Uzytkownik_Nazwa],[Procesor_Procent],[RAM_MB],[HDD_MB],[Procesy]) "
-                //                                    + "VALUES ({0},{1},{2},{3},{4},{5},{6})", Komputer_Id, Komputer_Nazwa, Uzytkownik_Nazwa, Procesor_Procent, RAM_MB, HDD_MB, Procesy);
-
-
-                string commandString = string.Format("INSERT INTO [Dane] ([Komputer_Id],[Komputer_Nazwa],[Uzytkownik_Nazwa],[Procesor_Procent],[RAM_MB],[HDD_MB],[Procesy]) "
-                                                    + "VALUES ({0},{1},{2},{3},{4},{5},{6})", Komputer_Id, Komputer_Nazwa, Uzytkownik_Nazwa, Procesor_Procent, RAM_MB, HDD_MB, Procesy);
+                DateTime czas = DateTime.Now;
+                string Czas = "'" + czas.Year + "-" + czas.Month + "-" + czas.Day + " " + czas.Hour + ":" + czas.Minute + ":" + czas.Second + "'";
+                
+                string commandString = string.Format("INSERT INTO [Dane] ([Komputer_Id],[Komputer_Nazwa],[Uzytkownik_Nazwa],[Procesor_Procent],[RAM_MB],[HDD_MB],[Procesy],[Czas]) "
+                                                    + "VALUES ({0},{1},{2},{3},{4},{5},{6},{7})", Komputer_Id, Komputer_Nazwa, Uzytkownik_Nazwa, Procesor_Procent, RAM_MB, HDD_MB, Procesy, Czas);
 
                 SqlCommand command = new SqlCommand(commandString, connection);
                 command.ExecuteNonQuery();

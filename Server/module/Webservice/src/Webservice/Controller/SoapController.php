@@ -7,7 +7,6 @@ use Zend\Mvc\Application;
 use \Zend\Soap\AutoDiscover;
 use \Zend\Soap\Server;
 use \Zend\Soap\Wsdl\ComplexTypeStrategy\ArrayOfTypeSequence as Strategy;
-use \Zend\Soap\Server\DocumentLiteralWrapper;
 
 ini_set("soap.wsdl_cache_enabled", "0");
 

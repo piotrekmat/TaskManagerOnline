@@ -2,8 +2,6 @@
 
 return [
     'modules' => [
-#         'SmartyModule',
-#        'ZendDeveloperTools',
         'Application',
         'Webservice',
         'Taskmanager'

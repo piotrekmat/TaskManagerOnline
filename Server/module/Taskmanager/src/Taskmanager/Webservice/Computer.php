@@ -21,7 +21,6 @@ use \Taskmanager\Model;
 
 class Computer
 {
-
     /**
      * Add information about single computer
      * @param string $idComputer
@@ -58,8 +57,6 @@ class Computer
             "id-compuetr" => $idComputer,
             'date' => $date
         ];
-
-
     }
 
     /**
@@ -68,10 +65,6 @@ class Computer
      */
     public function getList()
     {
-        $model = new Model\TaskmanagerTable();
-        $sql = $model->getSql();
-//        $sq
-
         return [];
     }
 

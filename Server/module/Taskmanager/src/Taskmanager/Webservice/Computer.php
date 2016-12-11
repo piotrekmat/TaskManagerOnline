@@ -47,14 +47,15 @@ class Computer
     /**
      * Get information about a single computer
      * @param string $idComputer
-     * @param string $data
+     * @param string $date
      * @return array
      */
-    public function getInformation($idComputer, $data)
+    public function getInformation($idComputer, $date)
     {
+
         return [
-            "idComputer" => $idComputer,
-            "data" => $data
+            "id-compuetr" => $idComputer,
+            'date' => $date
         ];
     }
 

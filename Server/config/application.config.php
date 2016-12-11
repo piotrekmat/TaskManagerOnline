@@ -3,7 +3,7 @@
 return [
     'modules' => [
 #         'SmartyModule',
-        'ZendDeveloperTools',
+#        'ZendDeveloperTools',
         'Application',
         'Webservice',
         'Taskmanager'

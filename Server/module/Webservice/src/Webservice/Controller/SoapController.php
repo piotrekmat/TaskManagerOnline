@@ -33,7 +33,7 @@ class SoapController extends AbstractController
             $wsdlGenerator->setServiceName($classWsdl);
             $wsdlGenerator->setBindingStyle([
                 'style' => 'document',
-//                'transport' => 'http://schemas.xmlsoap.org/soap/http'
+                'transport' => 'http://schemas.xmlsoap.org/soap/http'
             ]);
             $wsdlGenerator->setOperationBodyStyle(['use' => 'literal']);
             $wsdlGenerator->setUri($uri);

@@ -1,10 +1,10 @@
 <?php
 
 /**
- * 
+ *
  * @project: System partnerski SIFT
  * @author: Marcin Związek
- * 
+ *
  */
 
 namespace Application\Model\OneToOne;
@@ -33,7 +33,7 @@ class Associate extends Model
     protected $_columnsAssociate = ['*'];
 
     /**
-     * 
+     *
      * @return Table
      */
     public function getAssociate()
@@ -42,7 +42,7 @@ class Associate extends Model
     }
 
     /**
-     * 
+     *
      * @return Row
      */
     public function getAssociateRow()
@@ -70,11 +70,11 @@ class Associate extends Model
             $this->_secondRow = $this->getSecond()->row();
             if ($iOnePrimary) {
                 $assocRow = $this->_associateRow = $this->getAssociate()->select([
-                        $sOnePrimary => $iOnePrimary
-                    ])->current();
+                    $sOnePrimary => $iOnePrimary
+                ])->current();
                 if ($assocRow) {
                     $this->_secondRow = $this->getSecond()->select($assocRow->$sSecondPrimary);
-                }else{
+                } else {
                     $this->_secondRow = $this->getSecond()->row();
                 }
             }
@@ -91,9 +91,9 @@ class Associate extends Model
         $iPrimarySecond = $this->getSecondRow()->$sPrimarySecond;
 
         $row = $this->getAssociate()->select([
-                $sPrimaryOne => $iPrimaryOne,
-                $sPrimarySecond => $iPrimarySecond
-            ])->current();
+            $sPrimaryOne => $iPrimaryOne,
+            $sPrimarySecond => $iPrimarySecond
+        ])->current();
 
         if (empty($row)) {
             $this->_associateRow = $this->getAssociate()->row();
@@ -116,7 +116,7 @@ class Associate extends Model
     }
 
     /**
-     * 
+     *
      * @param AbstractPreparableSql $sql
      * @return AbstractPreparableSql
      */
@@ -134,7 +134,7 @@ class Associate extends Model
 
 
 //        echo $sql->getSqlString( new \Zend\Db\Adapter\Platform\Mysql());
-        
+
         return $sql;
     }
 }

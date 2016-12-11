@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace WindowsApp
 {
@@ -27,7 +29,7 @@ namespace WindowsApp
             InitializeHddCounters();
 
             timer = new Timer();
-            timer.Interval = 1000;
+            timer.Interval = 10000;
             timer.Tick += Timer_Tick;
             timer.Start();
         }
@@ -79,7 +81,7 @@ namespace WindowsApp
         }
 
 
-        public string GetID()
+        public string GetComputerID()
         {
             return id;
         }
@@ -128,7 +130,45 @@ namespace WindowsApp
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            Console.WriteLine(GetID() + " " + GetComputerName() + " " + GetUserName() + " " + GetCpuPercent().ToString() + " " + GetRamMB().ToString());
+            try
+            {
+                SqlConnection connection = new SqlConnection("Data Source = SQL5032.SmarterASP.NET; Initial Catalog = DB_A14E76_baza; User Id = DB_A14E76_baza_admin; Password = Injakopr1;");
+
+                connection.Open();
+
+                string Komputer_Id = "'" + GetComputerID() + "'";
+                string Komputer_Nazwa = "'" + GetComputerName() + "'";
+                string Uzytkownik_Nazwa = "'" + GetUserName() + "'";
+                int Procesor_Procent = GetCpuPercent();
+                int RAM_MB = GetRamMB();
+                string HDD_MB = "'";
+                foreach (int hdd in GetHddsMB())
+                {
+                    HDD_MB += hdd + ";";
+                }
+                HDD_MB += "'";
+                string Procesy = "'";
+                foreach (string proces in GetProcesses())
+                {
+                    Procesy += proces + ";";
+                }
+                Procesy += "'";
+                //string commandString = string.Format("INSERT INTO [Dane] ([Komputer_Id],[Komputer_Nazwa],[Uzytkownik_Nazwa],[Procesor_Procent],[RAM_MB],[HDD_MB],[Procesy]) "
+                //                                    + "VALUES ({0},{1},{2},{3},{4},{5},{6})", Komputer_Id, Komputer_Nazwa, Uzytkownik_Nazwa, Procesor_Procent, RAM_MB, HDD_MB, Procesy);
+
+
+                string commandString = string.Format("INSERT INTO [Dane] ([Komputer_Id],[Komputer_Nazwa],[Uzytkownik_Nazwa],[Procesor_Procent],[RAM_MB],[HDD_MB],[Procesy]) "
+                                                    + "VALUES ({0},{1},{2},{3},{4},{5},{6})", Komputer_Id, Komputer_Nazwa, Uzytkownik_Nazwa, Procesor_Procent, RAM_MB, HDD_MB, Procesy);
+
+                SqlCommand command = new SqlCommand(commandString, connection);
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch
+            {
+
+            }
         }
 
     }

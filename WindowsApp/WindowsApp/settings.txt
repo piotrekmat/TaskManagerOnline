@@ -1,1 +1,1 @@
-﻿www.google.pl
+﻿http://taskmanager.zwiazek.net/soap/taskmanager/computer?wsdl

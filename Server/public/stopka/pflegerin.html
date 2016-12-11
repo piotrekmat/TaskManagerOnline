@@ -1,0 +1,209 @@
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            .stopka{
+                //margin-left: 5px;
+                min-width: 400px;
+                width: 90%;
+                display: block;
+                font-family: Helvetica;
+                font-size: 12px;
+                color: black;
+                height: 350px;
+                max-height: 400px;
+            }
+
+
+
+            .stopka div {
+                position: relative;
+            }
+
+            .stopka .sekcja {
+                top: 0;
+                left: 0;
+                margin-top: 10px;
+                width: 100%;
+                min-height: 100px;
+            }
+
+            .stopka .left {
+                top: 0;
+                float: left;
+            }
+
+            .stopka .right {
+                top: 0;
+                float: left;
+
+            }
+
+            .stopka .foto img {
+                width: 70px;
+                margin: 0 15px 0 0;
+                box-shadow: 1px 1px 5px #606060;
+                border: thin  #1A3C8A solid;
+            }
+
+            /**
+                Pozdrowienia
+            */
+            .pozdrowienia {
+                margin-bottom: 30px;
+                text-align: left;
+                font-size: 13px;
+            }
+
+
+            /**
+                Osoba
+            */
+
+            .stopka .osoba {
+
+            }
+
+            .stopka .imie_nazwisko {
+                font-weight: bold;
+                font-size: 14px;
+                margin: 4px 0;
+                text-shadow: 1px 1px 2px #eee;
+            }
+
+            .stopka .stanowisko {
+                color: #606060;
+            }
+
+            .stopka .osoba_kontakt {
+                margin: 14px 0;
+            }
+
+            .stopka table {
+                font-size: 12px;
+            }
+
+            .stopka table div {
+                margin: 10px;
+            }
+
+
+            /**
+                Firma
+            */
+
+            .stopka .logo img {
+                width: 150px;
+            }
+
+            .stopka .firma {
+                margin: 40px 15px;  
+            }
+
+            .stopka .nazwa_firmy {
+                font-size: 14px;
+                font-weight: bolder;
+                color: #0a415b;
+
+            }
+
+            .stopka .firma_adres {
+
+            }
+
+            .stopka .firma_kontakt {
+
+            }
+
+            .stopka .info_prawna {
+                border-top: 2px solid #E51C20;
+                padding-top: 3px;
+                margin-top: 10px;
+                font-size: 9px;
+                color: #8C9DC4;
+                position: relative;
+                text-align: justify;
+            }
+
+            .stopka .info_prawna span {
+                margin: 10px 0;
+                color: green;
+            }
+
+
+
+
+
+        </style>
+        <!-- -->
+    </head>
+    <body>
+        <div class="stopka">
+            <div class="pozdrowienia">
+                <span><?php echo $_POST['pozdrowienie'];  ?></span>
+            </div>  
+            <?php 
+            if( strlen($_POST['nazwisko']) > 3 ){
+            ?>
+            <div class="sekcja osoba">
+                <?php 
+                if($_POST['photo']){
+                ?>
+                <div class="foto left">
+                    <img src="<? echo  $_POST['photo'] ?>">
+                </div>
+                <?php } ?>
+                <div class="right">
+                    <div class="imie_nazwisko">
+                        <? echo  $_POST['nazwisko'] ?>
+                    </div>
+                    <div class="stanowisko">
+                        <? echo  $_POST['stanowisko'] ?>
+                    </div>
+                    <div class="osoba_kontakt">
+                        <? if($_POST['telefon']){ ?>mob.: <? echo  $_POST['telefon'];  } ?><br/>
+                        <? if($_POST['mail']){ ?>
+                        e-mail: 
+                        <a href="mailto:<? echo  $_POST['mail'] ?>">
+                            <? echo  $_POST['mail'] ?>
+                        </a>
+                        <? } ?>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+            <div class="sekcja">
+
+                <table border="0" style="border: 0; ">
+                    <tr>
+                        <td colspan="2" style="text-align: center;">
+                            <img src="http://avoria.pl/mail-footer/pflegerin/logo.png" width="170">
+                        </td>
+                        <td style="">
+                            <div>
+                                Infolinia: +48 883 872 007<br/>
+                                Infolinia: +48 32 726 40 66<br/>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                ul. Bukowa 13<br>
+                                41-700 Ruda Śląska <br/>
+                                <a href="www.pflegerin24.pl" target="_blank">www.pflegerin24.pl</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="sekcja">
+                    <div class="info_prawna">
+                        Niniejsza wiadomość (wraz z ewentualnymi załącznikami) może zawierać informacje poufne lub prawnie chronione. Jeśli nie jest Pan/ Pani właściwym adresatem lub otrzymał/a Pan/Pani tę wiadomość przez pomyłkę, prosimy niezwłocznie powiadomić nadawcę i usunąć otrzymaną wiadomość. Kopiowanie, ujawnianie lub rozpowszechnianie w jakikolwiek sposób informacji zawartych w niniejszej wiadomości bez zgody nadawcy jest zabronione.
+                        <span>Rozważ, czy wydrukowanie wiadomości jest konieczne. Oszczędzając papier, przyczyniasz się do ochrony środowiska.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

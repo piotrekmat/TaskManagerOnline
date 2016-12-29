@@ -27,6 +27,7 @@ class IndexController extends AbstractController
 //        $this->view()->navigate = $oView;
 
         $this->redirect()->toUrl('/soap/taskmanager/computer?wsdl');
+        die('asdad');
 
         return $this->view();
     }

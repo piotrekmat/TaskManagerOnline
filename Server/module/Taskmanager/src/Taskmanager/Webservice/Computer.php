@@ -47,8 +47,7 @@ class Computer
 
     /**
      * Get information about a single computer
-     * @param string $idComputer
-     * @param string $date
+     * @param $data
      * @return array
      */
     public function getInformation($data)

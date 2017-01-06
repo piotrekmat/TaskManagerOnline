@@ -22,20 +22,21 @@ use \Taskmanager\Model;
 class Computer
 {
     /**
-     * Add information about single computer
-     * @param string $idComputer
-     * @param string $data
+     * Add information about Computer
+     * @param $data
      * @return bool
      */
-    public function addInformation($idComputer, $data)
+    public function addInformation($data)
     {
-        try {
-            $model = new Model\TaskmanagerTable();
-            $row = $model->row();
-            $row->id_computer = $idComputer;
-            $row->json = json_encode($data);
-            $row->save();
 
+
+        try {
+            $valueArray = get_object_vars($data);
+//            $model = new Model\TaskmanagerTable();
+//            $row = $model->row();
+//            $row->id_computer = $idComputer;
+//            $row->json = json_encode($data);
+//            $row->save();
             return true;
         } catch (Exception $e) {
             return false;
@@ -50,12 +51,12 @@ class Computer
      * @param string $date
      * @return array
      */
-    public function getInformation($idComputer, $date)
+    public function getInformation($data)
     {
-
+        $valueArray = get_object_vars($data);
         return [
-            "id-compuetr" => $idComputer,
-            'date' => $date
+            "id-compuetr" => $valueArray,
+            'date' => $valueArray
         ];
     }
 

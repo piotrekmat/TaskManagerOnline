@@ -37,7 +37,7 @@ class SoapController extends AbstractController
             ]);
             $wsdlGenerator->setOperationBodyStyle(['use' => 'literal']);
             $wsdlGenerator->setUri($uri);
-            $wsdlGenerator->setClass($classWsdl);
+            $wsdlGenerator->setClass(new $classWsdl());
             $wsdl = $wsdlGenerator->generate();
             $response->getHeaders()->addHeaderLine('Content-Type', 'text/xml');
             $response->setContent($wsdl->toXml());

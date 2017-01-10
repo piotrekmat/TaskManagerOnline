@@ -6,7 +6,7 @@ use \Application\Controller\AbstractController;
 use Zend\Mvc\Application;
 use \Zend\Soap\AutoDiscover;
 use \Zend\Soap\Server;
-use \Zend\Soap\Wsdl\ComplexTypeStrategy\AnyType as Strategy;
+use \Zend\Soap\Wsdl\ComplexTypeStrategy\ArrayOfTypeSequence as Strategy;
 use \Zend\Soap\Server\DocumentLiteralWrapper;
 
 ini_set("soap.wsdl_cache_enabled", "0");
@@ -25,42 +25,44 @@ class SoapController extends AbstractController
         $controller = $this->params('soapcontroller');
         $action = $this->params('soapaction');
         $classWsdl = sprintf("%s\\Webservice\\%s", ucfirst($controller), ucfirst($action));
+        $serviceName = sprintf("%s%s", ucfirst($controller), ucfirst($action));
 
-        if (isset($_GET['wsdl'])) {
-            try {
+        try {
+            if (isset($_GET['wsdl'])) {
                 $strategy = new Strategy();
-                $uri = $this->getUri();
+
                 $wsdlGenerator = new AutoDiscover($strategy);
-                $wsdlGenerator->setServiceName(sprintf("%s%s", ucfirst($controller), ucfirst($action)));
+                $wsdlGenerator->setServiceName($serviceName);
                 $wsdlGenerator->setBindingStyle([
                     'style' => 'document',
                     'transport' => 'http://schemas.xmlsoap.org/soap/http/'
                 ]);
                 $wsdlGenerator->setOperationBodyStyle(['use' => 'literal']);
+                $uri = $this->getUri();
                 $wsdlGenerator->setUri($uri);
                 $object = new $classWsdl();
                 $wsdlGenerator->setClass($classWsdl);
                 $wsdl = $wsdlGenerator->generate();
                 $response->getHeaders()->addHeaderLine('Content-Type', 'text/xml');
                 $response->setContent($wsdl->toXml());
-            } catch (\Exception $ex) {
-
-                print_r($ex->getTraceAsString());
-                print_r($ex->getMessage());
+            } else {
+                $uri = $this->getRequest()->getUri();
+                $soap = new Server((string)$uri . '?wsdl');
+                $soap->setSoapVersion(SOAP_1_2);
+                $soap->setReturnResponse(true);
+                $dlwcsl = new DocumentLiteralWrapper(new $classWsdl());
+                $soap->setObject($dlwcsl);
+                $soap->setClass($classWsdl);
+                $soapResponse = $soap->handle();
+                if ($soapResponse instanceof SoapFault) {
+                    $soapResponse = (string)$soapResponse;
+                }
+                $response->getHeaders()->addHeaderLine('Content-Type', 'text/xml');
+                $response->setContent($soapResponse);
             }
-
-        } else {
-            $uri = $this->getRequest()->getUri();
-            $soap = new Server((string)$uri . '?wsdl');
-            $soap->setReturnResponse(true);
-            $dlwcsl = new DocumentLiteralWrapper(new $classWsdl());
-            $soap->setObject($dlwcsl);
-            $soapResponse = $soap->handle();
-            if ($soapResponse instanceof SoapFault) {
-                $soapResponse = (string)$soapResponse;
-            }
-            $response->getHeaders()->addHeaderLine('Content-Type', 'text/xml');
-            $response->setContent($soapResponse);
+        } catch (\Exception $ex) {
+            print_r($ex->getTraceAsString());
+            print_r($ex->getMessage());
         }
         return $response;
     }

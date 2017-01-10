@@ -9,9 +9,6 @@
 
 namespace Taskmanager\Webservice;
 
-use chobie\Jira\Api\Exception;
-use \Zend\Soap\Wsdl;
-
 /**
  * Class InputComputer
  * @package Taskmanager\Webservice
@@ -23,10 +20,10 @@ class Computer
 {
     /**
      * Add information about Computer
-     * @param $data
+     * @param array $data
      * @return bool
      */
-    public function addInformation($data)
+    public function addInformation($data = [])
     {
 
 
@@ -47,10 +44,10 @@ class Computer
 
     /**
      * Get information about a single computer
-     * @param $data
+     * @param array $data
      * @return array
      */
-    public function getInformation($data)
+    public function getInformation($data = [])
     {
         $valueArray = get_object_vars($data);
         return [
@@ -60,10 +57,10 @@ class Computer
     }
 
     /**
-     * Get list of computers
+     * @param array $data
      * @return array
      */
-    public function getList()
+    public function getList($data)
     {
         return [];
     }

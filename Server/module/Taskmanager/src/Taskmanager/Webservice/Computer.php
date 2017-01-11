@@ -1,17 +1,10 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: marcin
- * Date: 12/11/2016
- * Time: 18:15
- */
-
 namespace Taskmanager\Webservice;
 
 /**
- * Class InputComputer
- * @package Taskmanager\Webservice
+ * Class Computer
+ * @class Computer
  */
 
 use \Taskmanager\Model;
@@ -19,11 +12,11 @@ use \Taskmanager\Model;
 class Computer
 {
     /**
-     * Add information about Computer
-     * @param array $data
+     * Opis taki jak ma być, a tablicę podaj w parametrze.
+     * @param  string
      * @return bool
      */
-    public function addInformation($data = [])
+    public function addInformation($data)
     {
 
 
@@ -34,7 +27,7 @@ class Computer
 //            $row->id_computer = $idComputer;
 //            $row->json = json_encode($data);
 //            $row->save();
-            return true;
+            return "asdasdasdasdas";
         } catch (Exception $e) {
             return false;
         }
@@ -43,11 +36,10 @@ class Computer
     }
 
     /**
-     * Get information about a single computer
-     * @param array $data
-     * @return array
+     * Krotki opis funkcji
+     * @return bool
      */
-    public function getInformation($data = [])
+    public function getInformation()
     {
         $valueArray = get_object_vars($data);
         return [
@@ -57,10 +49,10 @@ class Computer
     }
 
     /**
-     * @param array $data
-     * @return array
+     * Krotki opis funkcji getList
+     * @return string
      */
-    public function getList($data)
+    public function getList()
     {
         return [];
     }

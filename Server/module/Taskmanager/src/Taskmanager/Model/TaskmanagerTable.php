@@ -12,9 +12,9 @@ use \Application\Model\Entity\Table;
 
 class TaskmanagerTable extends Table
 {
-    protected $_primary = 'id';
+    protected $_primary = 'id_computer';
 
     protected $_row = '\Taskmanager\Model\TaskmanagerRow';
 
-    protected $table = 'data';
+    protected $table = 'computers';
 }

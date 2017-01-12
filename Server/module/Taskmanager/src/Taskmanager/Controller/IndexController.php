@@ -19,16 +19,14 @@ class IndexController extends AbstractController
 
     public function indexAction()
     {
-        $computer = new Computer();
-        $data = [
-            'asdasda',
-            'asdasdasd',
-            'asdasdasdasd',
-            'asdasdasdasd'
-        ];
-        $computer->addInformation("asdasdasd", $data);
-
-
-        return $this->view();
+        try {
+            $test = new  Computer();
+            $test->getList();
+        } catch (\Exception $e) {
+            echo print_r($e->getTraceAsString());
+        }
+        die('poszlo');
     }
+
+
 }

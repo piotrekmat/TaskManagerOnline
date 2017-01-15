@@ -15,27 +15,32 @@ class TaskmanagerRow extends Row
 
     protected $_primary = 'id_computer';
 
-    protected $table = 'computer';
+    protected $table = 'computers';
 
-    public $id_computer;
+    public function __set($name, $value)
+    {
+        $this->offsetSet($name, $value);
+    }
 
-    public $id;
-
-    public $computer_name;
-
-    public $user_name;
-
-    public $cpu;
-
-    public $ram_mb_free;
-
-    public $hdd_mb_free;
-
-    public $processes;
-
-    public $processes_count;
-
-    public $create;
+//    public $id_computer;
+//
+//    public $id;
+//
+//    public $computer_name;
+//
+//    public $user_name;
+//
+//    public $cpu;
+//
+//    public $ram_mb_free;
+//
+//    public $hdd_mb_free;
+//
+//    public $processes;
+//
+//    public $processes_count;
+//
+//    public $create;
 
 
 }

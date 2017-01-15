@@ -19,31 +19,40 @@ class Computer
      * hdd_mb_free : 100268 int[],
      * processes : "chrome" string[],
      * create: date
-     * @param  array $data
-     * @return bool
+     * @param  string $data
+     * @return string
      */
     public function addInformation($data)
     {
         try {
 
-            $data = json_decode($data);
+
+            $data = json_decode($data, true);
+
 
             $row = new Model\TaskmanagerRow();
+
             $row->id = $data['id'];
             $row->cpu = $data['cpu'];
             $row->computer_name = $data['computer_name'];
             $row->user_name = $data['user_name'];
             $row->ram_mb_free = $data['ram_mb_free'];
             $row->hdd_mb_free = json_encode($data['hdd_mb_free']);
-            $row->processes_count = count($data['processes']);
+            $row->processes_count = count(explode(';', $data['processes']));
             $row->processes = json_encode($data['processes']);
+
 
             $row->save();
 
-            return true;
+            return (var_export($data, true));
 
-        } catch (Exception $e) {
-            return false;
+
+        } catch (\Exception $e) {
+            echo $e->getTraceAsString();
+
+            echo $e->getMessage();
+
+            return "false";
         }
 
 
@@ -51,12 +60,12 @@ class Computer
 
     /**
      * Pobiera informacje o jednym wskazanym komputerze, parametrem jest string json (w przypadku array, c# nie daje sobie rady), informacje zwrotne również zawarte są w json jako string, należy wynik zdekodować.
-     * @param array $params
+     * @param string $params
      * @return string
      */
     public function getInformation($params)
     {
-//        $params = json_decode($params);
+        $params = json_decode($params);
 
         if (!isset($params['id']) || empty($params['id'])) {
             throw new \SoapFault("500", "Brak wymaganych parametrów [id]");
@@ -90,15 +99,9 @@ class Computer
             $select = $model->getSql()->select();
             $select->columns(['create', 'id'], false);
             $select->group(['id', 'computer_name']);
-            echo $select->getSqlString();
-            die;
             $rows = $model->selectWith($select);
 
-
-            foreach ($rows as $row) {
-                var_dump($row->toArray());
-            }
-
+            return json_encode((array)$rows);
 
         } catch (\Exception $e) {
             throw new \SoapFault("404", "Brak danych");

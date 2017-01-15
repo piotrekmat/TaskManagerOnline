@@ -19,13 +19,14 @@ class IndexController extends AbstractController
 
     public function indexAction()
     {
-        try {
-            $test = new  Computer();
-            $test->getList();
-        } catch (\Exception $e) {
-            echo print_r($e->getTraceAsString());
-        }
-        die('poszlo');
+
+        $test = new  Computer();
+        $data = "{\"id\":\"identyfikator\",\"cpu\":\"procesor\",\"computer_name\":\"computer_name\",\"user_name\":\"nazwa uzytkownika\",\"ram_mb_free\":\"pamiec\",\"hdd_mb_free\":\"hdd\",\"processes\":\"procesy\"}";
+        $result = $test->addInformation($data);
+        var_dump($result);
+
+
+        die("KONIEC");
     }
 
 

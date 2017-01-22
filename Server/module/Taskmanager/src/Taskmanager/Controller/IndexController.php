@@ -21,8 +21,9 @@ class IndexController extends AbstractController
     {
 
         $test = new  Computer();
-        $data = "{\"id\":\"identyfikator\",\"cpu\":\"procesor\",\"computer_name\":\"computer_name\",\"user_name\":\"nazwa uzytkownika\",\"ram_mb_free\":\"pamiec\",\"hdd_mb_free\":\"hdd\",\"processes\":\"procesy\"}";
-        $result = $test->addInformation($data);
+//        $result = $test->getList();
+        $data = "f44dccef-01ae-4bcb-bb51-5bcb29ed534f";
+        $result = $test->getInformation($data);
         var_dump($result);
 
 

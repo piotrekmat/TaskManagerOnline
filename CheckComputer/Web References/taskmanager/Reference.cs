@@ -85,10 +85,10 @@ namespace CheckComputer.taskmanager {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://taskmanager.zwiazek.net/soap/taskmanager/computer#addInformation", RequestNamespace="http://taskmanager.zwiazek.net/soap/taskmanager/computer", ResponseNamespace="http://taskmanager.zwiazek.net/soap/taskmanager/computer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string addInformation([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string data) {
+        public bool addInformation([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string data) {
             object[] results = this.Invoke("addInformation", new object[] {
                         data});
-            return ((string)(results[0]));
+            return ((bool)(results[0]));
         }
         
         /// <remarks/>
@@ -115,24 +115,24 @@ namespace CheckComputer.taskmanager {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://taskmanager.zwiazek.net/soap/taskmanager/computer#getInformation", RequestNamespace="http://taskmanager.zwiazek.net/soap/taskmanager/computer", ResponseNamespace="http://taskmanager.zwiazek.net/soap/taskmanager/computer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string getInformation([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string @params) {
+        public string getInformation([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string id) {
             object[] results = this.Invoke("getInformation", new object[] {
-                        @params});
+                        id});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void getInformationAsync(string @params) {
-            this.getInformationAsync(@params, null);
+        public void getInformationAsync(string id) {
+            this.getInformationAsync(id, null);
         }
         
         /// <remarks/>
-        public void getInformationAsync(string @params, object userState) {
+        public void getInformationAsync(string id, object userState) {
             if ((this.getInformationOperationCompleted == null)) {
                 this.getInformationOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetInformationOperationCompleted);
             }
             this.InvokeAsync("getInformation", new object[] {
-                        @params}, this.getInformationOperationCompleted, userState);
+                        id}, this.getInformationOperationCompleted, userState);
         }
         
         private void OngetInformationOperationCompleted(object arg) {
@@ -207,10 +207,10 @@ namespace CheckComputer.taskmanager {
         }
         
         /// <remarks/>
-        public string Result {
+        public bool Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
+                return ((bool)(this.results[0]));
             }
         }
     }

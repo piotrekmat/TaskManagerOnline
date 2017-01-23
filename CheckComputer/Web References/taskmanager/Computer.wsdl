@@ -12,14 +12,14 @@
       <xsd:element name="addInformationResponse">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="addInformationResult" type="xsd:string" />
+            <xsd:element name="addInformationResult" type="xsd:boolean" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
       <xsd:element name="getInformation">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="params" type="xsd:string" />
+            <xsd:element name="id" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -62,12 +62,12 @@
   </wsdl:message>
   <wsdl:portType name="ComputerPort">
     <wsdl:operation name="addInformation">
-      <documentation>Parametrem wskazanego komputera powinien być string, jako zakodowany jso, składający się z następujących pól id : "726d1326-8333-4715-898c-940a4c8a799b" string, computer_name : "MAC" string, user_name : "Marek" string, cpu : 17 int, ram_mb_free : 3461 int, hdd_mb_free : 100268 int[], processes : "chrome" string[], create: date</documentation>
+      <documentation>Parametrem wskazanego komputera powinien być string, jako zakodowany jso, składający się z następujących pól id : "726d1326-8333-4715-898c-940a4c8a799b" string, computer_name : "MAC" string, user_name : "Marek" string, cpu : 17 int [%], ram_mb_used : 25 int [%], hdd_mb_free : 100268 int[], processes : "chrome" string[], create: date</documentation>
       <wsdl:input message="tns:addInformationIn" />
       <wsdl:output message="tns:addInformationOut" />
     </wsdl:operation>
     <wsdl:operation name="getInformation">
-      <documentation>Pobiera informacje o jednym wskazanym komputerze, parametrem jest string json (w przypadku array, c# nie daje sobie rady), informacje zwrotne również zawarte są w json jako string, należy wynik zdekodować.</documentation>
+      <documentation>Przykładowe ID: f44dccef-01ae-4bcb-bb51-5bcb29ed534f</documentation>
       <wsdl:input message="tns:getInformationIn" />
       <wsdl:output message="tns:getInformationOut" />
     </wsdl:operation>

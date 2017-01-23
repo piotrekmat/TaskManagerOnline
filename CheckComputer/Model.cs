@@ -35,9 +35,10 @@ namespace CheckComputer
             }
             return computers;
         }
-        public void TakeAllDataAbotComputer(string id)
+        public void TakeAllDataAbotComputer(string idComputer)
         {
-            var v = client.getInformation(id);
+            JArray v = JArray.Parse(client.getInformation(idComputer));
+
 
         }
 

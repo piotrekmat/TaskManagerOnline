@@ -12,9 +12,27 @@ namespace CheckComputer
 {
     public partial class ComputerDetails : Form
     {
-        public ComputerDetails()
+        Controler controler;
+        public ComputerDetails(Controler controler)
         {
             InitializeComponent();
+            this.controler = controler;
+            controler.AddViewToControler(this);
+            controler.OnLoadDeatail();
+            
+        }
+        public void SetCpuChartValue(int x, int y)
+        {
+            ch_cpu.Series["Punkty"].Points.AddXY(x, y);
+        }
+        public void SetRamChartValue(int x, int y)
+        {
+            ch_Ram.Series["Punkty"].Points.AddXY(x, y);
+        }
+
+        private void ch_Ram_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

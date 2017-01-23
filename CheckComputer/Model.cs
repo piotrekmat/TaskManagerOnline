@@ -11,6 +11,9 @@ namespace CheckComputer
     {
         taskmanager.ComputerService client;
         List<ComputerInformation> computers;
+        public List<string> cpu = new List<string>();
+        public List<string> ram = new List<string>();
+        public List<string> hdd = new List<string>();
 
         public Model()
         {
@@ -21,7 +24,6 @@ namespace CheckComputer
         {
             ComputerInformation tempComputer = new ComputerInformation();
             JArray v = JArray.Parse(client.getList());
-            ;
             foreach (var item in v.Children())
             {
                 var itemProperties = item.Children<JProperty>();
@@ -38,8 +40,14 @@ namespace CheckComputer
         public void TakeAllDataAbotComputer(string idComputer)
         {
             JArray v = JArray.Parse(client.getInformation(idComputer));
+            foreach (var item in v.Children())
+            {
+                var itemProperties = item.Children<JProperty>();
+                cpu.Add(itemProperties.FirstOrDefault(x => x.Name == "cpu").FirstOrDefault().ToString());
+                ram.Add(itemProperties.FirstOrDefault(x => x.Name == "ram_mb_used").FirstOrDefault().ToString());
+                hdd.Add(itemProperties.FirstOrDefault(x => x.Name == "hdd_mb_free").FirstOrDefault().ToString());
 
-
+            }
         }
 
     }

@@ -9,3 +9,4 @@ c:\users\marcin\documents\visual studio 2015\Projects\CheckComputer\CheckCompute
 c:\users\marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\obj\Debug\CheckComputer.pdb
 C:\Users\Marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\obj\Debug\CheckComputer.ComputerDetails.resources

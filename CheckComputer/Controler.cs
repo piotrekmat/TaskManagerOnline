@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace CheckComputer
 {
-    class Controler
+    public class Controler
     {
         Model model = new Model();
         Form1 view;
+        ComputerDetails view1;
         List<ComputerInformation> computers;
         public Controler(Form1 view)
         {
             this.view = view;
+        }
+        public void AddViewToControler(ComputerDetails view1)
+        {
+            this.view1 = view1;
         }
         public void OnLoad()
         {
@@ -22,6 +27,22 @@ namespace CheckComputer
             foreach(ComputerInformation computer in computers)
             {
                 view.AddToCombo(computer.ComputerName);
+            }
+        }
+        public void OnLoadDeatail()
+        {
+            ShowDeatils();
+            int i = 1;
+            foreach (string data in model.cpu)
+            {
+                view1.SetCpuChartValue(i,int.Parse(data));
+                i++;
+            }
+            int j = 0;
+            foreach(string data in model.ram)
+            {
+                view1.SetRamChartValue(j, int.Parse(data));
+                j++;
             }
         }
         public void SetDataFromComputer()

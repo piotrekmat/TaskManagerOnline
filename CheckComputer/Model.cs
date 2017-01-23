@@ -35,6 +35,11 @@ namespace CheckComputer
             }
             return computers;
         }
+        public void TakeAllDataAbotComputer(string id)
+        {
+            var v = client.getInformation(id);
+
+        }
 
     }
 }

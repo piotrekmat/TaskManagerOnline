@@ -113,6 +113,7 @@
             this.btn_details.TabIndex = 9;
             this.btn_details.Text = "Pokaż szczegóły";
             this.btn_details.UseVisualStyleBackColor = true;
+            this.btn_details.Click += new System.EventHandler(this.btn_details_Click);
             // 
             // Form1
             // 

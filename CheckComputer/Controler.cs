@@ -24,9 +24,9 @@ namespace CheckComputer
                 view.AddToCombo(computer.ComputerName);
             }
         }
-        public void SetDataFromComputer(string value)
+        public void SetDataFromComputer()
         {
-            string dpa = "dddd";
+            string value = view.IdCompterCombo;
             ComputerInformation computer = (from rekord in computers where rekord.ComputerName == value select rekord).FirstOrDefault();
             if (computer != null)
             {
@@ -34,6 +34,13 @@ namespace CheckComputer
                 view.SetRam(computer.RamAvg);
                 view.SetProcess(computer.ProcessAvg);
             }
+        }
+
+        public void ShowDeatils()
+        {
+            string id = (from rekord in computers where rekord.ComputerName == view.IdCompterCombo select rekord.Id).FirstOrDefault();
+            if(!String.IsNullOrEmpty(id)) model.TakeAllDataAbotComputer(id);
+
         }
     }
 

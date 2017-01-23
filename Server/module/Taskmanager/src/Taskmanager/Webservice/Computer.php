@@ -62,14 +62,15 @@ class Computer
     /**
      * Pobiera informacje o jednym wskazanym komputerze, parametrem jest string json (w przypadku array, c# nie daje sobie rady), informacje zwrotne również zawarte są w json jako string, należy wynik zdekodować.
      * Przykładowe ID: f44dccef-01ae-4bcb-bb51-5bcb29ed534f
+     *
      * @param string $id
      * @return string
      */
     public function getInformation($id)
     {
-        if (empty($id)) {
-            throw new \SoapFault("500", "Brak wymaganych parametrów [id]");
-        }
+//        if (empty($id)) {
+//            throw new \SoapFault("500", "Brak wymaganych parametrów [id]");
+//        }
 
         try {
             $table = new Model\TaskmanagerTable();
@@ -97,7 +98,7 @@ class Computer
 //            echo '<br>';
 //            echo $e->getTraceAsString();
 //            die;
-
+            throw new \SoapFault("500", "Błąd odczytu danych");
 
         }
     }

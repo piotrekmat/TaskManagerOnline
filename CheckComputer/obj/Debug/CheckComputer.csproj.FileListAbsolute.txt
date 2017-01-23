@@ -1,0 +1,11 @@
+c:\users\marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\bin\Debug\CheckComputer.exe.config
+c:\users\marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\bin\Debug\CheckComputer.exe
+c:\users\marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\bin\Debug\CheckComputer.pdb
+c:\users\marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\obj\Debug\CheckComputer.csprojResolveAssemblyReference.cache
+c:\users\marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\obj\Debug\CheckComputer.Form1.resources
+c:\users\marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\obj\Debug\CheckComputer.Properties.Resources.resources
+c:\users\marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\obj\Debug\CheckComputer.csproj.GenerateResource.Cache
+c:\users\marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\obj\Debug\CheckComputer.exe
+c:\users\marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\obj\Debug\CheckComputer.pdb
+C:\Users\Marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Marcin\documents\visual studio 2015\Projects\CheckComputer\CheckComputer\bin\Debug\Newtonsoft.Json.xml

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://taskmanager.zwiazek.net/soap/taskmanager/computer" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="Computer" targetNamespace="http://taskmanager.zwiazek.net/soap/taskmanager/computer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://taskmanager.zwiazek.net/soap/taskmanager/computer">
+      <xsd:element name="addInformation">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="data" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addInformationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="addInformationResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getInformation">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="params" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getInformationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getInformationResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getList">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getListResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="addInformationIn">
+    <wsdl:part name="parameters" element="tns:addInformation" />
+  </wsdl:message>
+  <wsdl:message name="addInformationOut">
+    <wsdl:part name="parameters" element="tns:addInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="getInformationIn">
+    <wsdl:part name="parameters" element="tns:getInformation" />
+  </wsdl:message>
+  <wsdl:message name="getInformationOut">
+    <wsdl:part name="parameters" element="tns:getInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="getListIn">
+    <wsdl:part name="parameters" element="tns:getList" />
+  </wsdl:message>
+  <wsdl:message name="getListOut">
+    <wsdl:part name="parameters" element="tns:getListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ComputerPort">
+    <wsdl:operation name="addInformation">
+      <documentation>Parametrem wskazanego komputera powinien być string, jako zakodowany jso, składający się z następujących pól id : "726d1326-8333-4715-898c-940a4c8a799b" string, computer_name : "MAC" string, user_name : "Marek" string, cpu : 17 int, ram_mb_free : 3461 int, hdd_mb_free : 100268 int[], processes : "chrome" string[], create: date</documentation>
+      <wsdl:input message="tns:addInformationIn" />
+      <wsdl:output message="tns:addInformationOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getInformation">
+      <documentation>Pobiera informacje o jednym wskazanym komputerze, parametrem jest string json (w przypadku array, c# nie daje sobie rady), informacje zwrotne również zawarte są w json jako string, należy wynik zdekodować.</documentation>
+      <wsdl:input message="tns:getInformationIn" />
+      <wsdl:output message="tns:getInformationOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getList">
+      <documentation>Krotki opis funkcji getList</documentation>
+      <wsdl:input message="tns:getListIn" />
+      <wsdl:output message="tns:getListOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ComputerBinding" type="tns:ComputerPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="addInformation">
+      <soap:operation soapAction="http://taskmanager.zwiazek.net/soap/taskmanager/computer#addInformation" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://taskmanager.zwiazek.net/soap/taskmanager/computer" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://taskmanager.zwiazek.net/soap/taskmanager/computer" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInformation">
+      <soap:operation soapAction="http://taskmanager.zwiazek.net/soap/taskmanager/computer#getInformation" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://taskmanager.zwiazek.net/soap/taskmanager/computer" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://taskmanager.zwiazek.net/soap/taskmanager/computer" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getList">
+      <soap:operation soapAction="http://taskmanager.zwiazek.net/soap/taskmanager/computer#getList" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://taskmanager.zwiazek.net/soap/taskmanager/computer" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://taskmanager.zwiazek.net/soap/taskmanager/computer" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ComputerService">
+    <wsdl:port name="ComputerPort" binding="tns:ComputerBinding">
+      <soap:address location="http://taskmanager.zwiazek.net/soap/taskmanager/computer" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

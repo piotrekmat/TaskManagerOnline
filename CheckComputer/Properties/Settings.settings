@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CheckComputer.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CheckComputer_taskmanager_ComputerService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://taskmanager.zwiazek.net/soap/taskmanager/computer</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
